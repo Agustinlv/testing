@@ -1,0 +1,27 @@
+<main>
+    <div class="main-container">
+        <h1>Chat</h1>
+        <div class="controls">
+            <p>You are logged as {{user.first_name}} {{user.last_name}} ({{user.role}})</p>
+            <a href="/profile"><button>Edit Profile</button></a>
+            <a href="/api/sessions/logout"><button>Sign Out</button></a>
+            <a href="/products"><button>Product Catalog</button></a>
+        </div>
+        <div id="chat-username">{{user.email}}</div>
+        <div class="chat-user">
+        </div>
+        <div class="chat-container">
+            <p>Chat:</p>
+            <p id="messageLog">
+                {{#each messages}}
+                    {{username}} dice: {{message}}<br>
+                {{/each}}
+            </p>
+            <p>Message:</p>
+            <input id="chatbox">
+        </div>
+    </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>

@@ -1,0 +1,257 @@
+paths:
+  /api/carts/{cid}:
+    get:
+      summary: Gets a cart by cart id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: The cid is the interal id the database assigns to the carts (_id)
+          schema:
+            $type: string
+            example: 64ad97d5b5613fbbb51534ee
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Carts'
+        "400":
+          description: "Error"
+    put:
+      summary: Replaces the contents of a cart with the contents of the body by cart id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: The cid is the interal id the database assigns to the carts (_id)
+          schema:
+            $type: string
+            example: 64ad97d5b5613fbbb51534ee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/ReplaceCart'
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Error"
+    delete:
+      summary: Empties a cart by cart id
+      tags:
+        - Carts
+      parameters:
+      - name: cid
+        in: path
+        required: true
+        description: The cid is the interal id the database assigns to the carts (_id)
+        schema:
+          $type: string
+          example: 64ad97d5b5613fbbb51534ee
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Error"
+  /api/carts/{uid}:
+    post:
+      summary: Creates a cart for a user id
+      tags:
+        - Carts
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: The uid is the interal id the database assigns to the users (_id)
+          schema:
+            $type: string
+            example: 64ad90ea645d4d82d2d606ba
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Carts'
+        "400":
+          description: "Error"
+  /api/carts/{cid}/product/{pid}:
+    post:
+      summary: Adds a product with a quantity of 1 to a cart by product id and cart id. If the product already exists in the cart, it increases that product's quantity by 1
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: The cid is the interal id the database assigns to the carts (_id)
+          schema:
+            $type: string
+            example: 64ad97d5b5613fbbb51534ee
+        - name: pid
+          in: path
+          required: true
+          description: The pid is the interal id the database assigns to the products (_id)
+          schema:
+            $type: string
+            example: 645ae40952e2c6718d5a0308
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Error"
+    put:
+      summary: Updates the quantity of the product passed from the body by product id and cart id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: The cid is the interal id the database assigns to the carts (_id)
+          schema:
+            $type: string
+            example: 64ad97d5b5613fbbb51534ee
+        - name: pid
+          in: path
+          required: true
+          description: The pid is the interal id the database assigns to the products (_id)
+          schema:
+            $type: string
+            example: 645ae40952e2c6718d5a0308
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/UpdateQuantity'
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Error"
+    delete:
+      summary: Deletes a product from the cart by product id and cart id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: The cid is the interal id the database assigns to the carts (_id)
+          schema:
+            $type: string
+            example: 64ad97d5b5613fbbb51534ee
+        - name: pid
+          in: path
+          required: true
+          description: The pid is the interal id the database assigns to the products (_id)
+          schema:
+            $type: string
+            example: 645ae40952e2c6718d5a0308
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Error"
+  /api/carts/{cid}/purchase:
+    post:
+      summary: Checks out the content of the cart by cart id
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          description: The cid is the interal id the database assigns to the carts (_id)
+          schema:
+            $type: string
+            example: 64ad97d5b5613fbbb51534ee
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Tickets'
+        "400":
+          description: "Error"
+components:
+  schemas:
+    Carts:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: Internal id, autogenerated by the database
+        owner: 
+          type: ObjectId
+          description: User id of the cart owner
+        products:
+          type: Array
+          description: Array of products inside the cart
+          items:
+            $ref: '#components/schemas/CartProducts'
+      example:
+        _id: 64ad97d5b5613fbbb51534ee
+        owner: 64d1a54c8101701ba25d49d1
+        products: []
+    Tickets:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: Internal id, autogenerated by the database
+        code: 
+          type: String
+          description: Ticket code, autogenerated by the app
+        purchase_datetime:
+          type: String
+          description: Purchase timestamp
+        amount:
+          type: Number
+          description: Total purchase amount
+        purchaser:
+          type: String
+          description: Email of the owner of the purchase
+      example:
+        _id: 64ad99048f75550742efb09d
+        code: bda0844a-bd82-46c4-bed6-bf0f8636effa
+        purchase_datetime: 2023:07:11:15:01:40
+        amount: 4000
+        purchaser: agustinlv@hotmail.com
+    CartProducts:
+      type: object
+      properties:
+        product:
+          type: ObjectId
+          description: Internal product id, autogenerated by the database
+        quantity:
+          type: Number
+          description: Quantity of units of the product
+      example:
+        product: 645ae40952e2c6718d5a0309
+        quantity: 4
+  requestBodies:
+      ReplaceCart:
+        type: object
+        properties:
+          products:
+            type: array
+            items:
+              $ref: '#components/schemas/CartProducts'
+      UpdateQuantity:
+        type: object
+        properties:
+          quantity: 
+            type: number
+        example:
+          quantity: 4

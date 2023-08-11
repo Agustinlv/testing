@@ -1,0 +1,195 @@
+paths:
+  /api/products/:
+    get:
+      summary: Gets all products
+      tags:
+        - Products
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Products'
+        "400":
+          description: "Error"
+    post:
+      summary: Creates a new product
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/NewProduct'
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Products'
+        "400":
+          description: "Error"
+  /api/products/{pid}:
+    get:
+      summary: Gets a product by product id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: The pid is the interal id the database assigns to the products (_id)
+          schema:
+            $type: string
+            example: 64ac240de20f4c64da796b9e
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Error"
+    put:
+      summary: Updates a product by product id
+      tags:
+        - Products
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: The pid is the interal id the database assigns to the products (_id)
+        schema:
+          $type: string
+          example: 64ac240de20f4c64da796b9e
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/UpdateProduct'
+      responses:
+        "200":
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Products'
+        "400":
+          description: "Error"
+    delete:
+      summary: Deletes a product by product id
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: The pid is the interal id the database assigns to the products (_id)
+          schema:
+            $type: string
+            example: 64ac240de20f4c64da796b9e
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Error"
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        title: 
+          type: String
+          description: Product title or name
+        descripcion:
+          type: String
+          description: Product description
+        price:
+          type: Number
+          description: Unit price of the product
+        status: 
+          type: Boolean
+          description: Indicates if product is active
+        stock:
+          type: Number
+          description: Available stock of the product
+        category:
+          type: String
+          description: Product category
+        thumbnails:
+          type: Array
+          description: Links to product thumbnail pictures
+        owner:
+          type: String
+          description: The username of the user who created the product
+      example:
+        title: Joker Van Gogh
+        description: Hand designed, laser cut, non classic shape, wooden puzzle
+        price: 6500
+        status: true
+        stock: 10
+        category: Wooden Puzzle
+        thumbnails: []
+        owner: admin@mail.com
+  requestBodies:
+    NewProduct:
+      type: object
+      properties:
+        title: 
+          type: String
+        descripcion:
+          type: String
+        price:
+          type: Number
+        status: 
+          type: Boolean
+        stock:
+          type: Number
+        category:
+          type: String
+        thumbnails:
+          type: Array
+        owner:
+          type: String
+      example:
+        title: Add a title or product name
+        description: Add a brief product description
+        price: 7500
+        status: true
+        stock: 50
+        category: Add a product category
+        thumbnails: []
+        owner: admin@mail.com
+    UpdateProduct:
+      type: object
+      properties:
+        title: 
+          type: String
+        descripcion:
+          type: String
+        price:
+          type: Number
+        status: 
+          type: Boolean
+        stock:
+          type: Number
+        category:
+          type: String
+        thumbnails:
+          type: Array
+        owner:
+          type: String
+      example:
+        title: Updated Title
+        description: Updated Description
+        price: 7500
+        status: true
+        stock: 50
+        category: New Category
+        thumbnails: []
+        owner: admin@mail.com

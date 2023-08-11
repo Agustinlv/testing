@@ -1,0 +1,71 @@
+<main>
+    <div class="main-container">
+        <h1>Product Catalog</h1>
+        <div class="controls">
+            <p>You are logged as {{user.first_name}} {{user.last_name}} ({{user.role}})</p>
+            <div id="cart-id">{{user.cart}}</div>
+            {{#if isAdmin}}
+                <a href="/admin"><button>Manage Products</button></a>
+            {{/if}}
+            {{#if isPremium}}
+                <a href="/carts/{{user.cart}}"><button>Cart</button></a>
+                <a href="/chat"><button>Chat</button></a>
+                <a href="/admin"><button>Manage Products</button></a>
+            {{/if}}
+            {{#if isUser}}
+                <a href="/carts/{{user.cart}}"><button>Shopping Cart</button></a>
+                <a href="/chat"><button>Chat</button></a>
+            {{/if}}
+            <a href="/profile"><button>Edit Profile</button></a>
+            <a href="/api/sessions/logout"><button >Sign Out</button></a>
+        </div>
+        <div class="page-controls-container">
+            <div class="controls">
+                {{#if prevLink}}
+                    <a href={{prevLink}}><button id="prev-page">Prev. Page</button></a>
+                {{/if}}
+                {{#if nextLink}}
+                    <a href={{nextLink}}><button d="next-prev">Next. Page</button></a>
+                {{/if}}
+            </div>
+        </div>
+        <div id="products-container">
+            {{#if isAdmin}}
+                {{#each payload}}
+                    <div class="product-container">
+                        <p class="product-title">{{title}}</p>
+                        <p class="product-data">Price: ${{price}}</p>
+                        <p class="product-data" id="stock">Stock: {{stock}}</p>
+                        <p class="product-data">Category: {{category}}</p>
+                        <p class="product-description">Description: {{description}}</p>
+                    </div>
+                {{/each}}
+            {{/if}}
+            {{#if isPremium}}
+                {{#each payload}}
+                    <div class="product-container">
+                        <p class="product-title">{{title}}</p>
+                        <p class="product-data">Price: ${{price}}</p>
+                        <p class="product-data" id="stock">Stock: {{stock}}</p>
+                        <p class="product-data">Category: {{category}}</p>
+                        <p class="product-description">Description: {{description}}</p>
+                        <button class="add-to-cart" id={{id}}>Add to Cart</button>
+                    </div>
+                {{/each}}
+            {{/if}}
+            {{#if isUser}}
+                {{#each payload}}
+                    <div class="product-container">
+                        <p class="product-title">{{title}}</p>
+                        <p class="product-data">Price: ${{price}}</p>
+                        <p class="product-data" id="stock">Stock: {{stock}}</p>
+                        <p class="product-data">Category: {{category}}</p>
+                        <p class="product-description">Description: {{description}}</p>
+                        <button class="add-to-cart" id={{id}}>Add to Cart</button>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</main>
+<script src="/js/products.js"></script>

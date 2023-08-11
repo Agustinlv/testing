@@ -1,0 +1,28 @@
+<main>
+    <div class="main-container">
+        <h1>Register</h1>
+        <form class="register-controls" id="register-form">
+            <label>First Name*</label>
+            <input class="input" type="text" name="first_name" value="Agustin" placeholder="Type your name" required>
+            <label>Last Name*</label>
+            <input class="input" type="text" name="last_name" value="Lavia" placeholder="Type your last name" required>
+            <label>Age</label>
+            <input class="input" type="number" name="age" value="42" placeholder="Enter your age">
+            <label>User Type</label>
+            <select class="input" name="role">
+                <option value="user">User</option>
+                <option value="premium">Premium</option>
+                <option value="admin">Admin</option>
+                <option value="superadmin">Super Admin</option>
+            </select>
+            <label>Email*</label>
+            <input class="input" type="email" name="email" value="agustin@mail.com" placeholder="Type your email" required>
+            <label>Password*</label>
+            <input class="input" type="password" name="password" value="pass" ="Type a password" required>
+            <input class="button" type="submit" value="Submit">
+        </form>
+        <p>*These fields are required</p>
+        <p>If you are already registered, please click <a href="/login">here</a></p>
+    </div>
+</main>
+<script src="/js/register.js"></script>

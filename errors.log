@@ -1,0 +1,23 @@
+{"level":"error","message":"This is an error message. Visible also in production. Logged in the file only in production"}
+{"level":"fatal","message":"This is a fatal message. Visible also in production. Logged in the file only in production"}
+{"level":"error","message":"7/31/2023: filename is not defined"}
+{"level":"error","message":"Date: 8/6/2023 - File: token.js - Message: jwt must be provided"}
+{"level":"error","message":"Date: 8/6/2023 - File: user.mongo.js - Message: secretOrPrivateKey must have a value"}
+{"level":"error","message":"8/6/2023: Incorrect credentials"}
+{"level":"error","message":"Date: 8/6/2023 - File: token.js - Message: jwt must be provided"}
+{"level":"error","message":"8/6/2023: Incorrect credentials"}
+{"level":"error","message":"Date: 8/6/2023 - File: token.js - Message: jwt must be provided"}
+{"level":"error","message":"Date: 8/6/2023 - File: token.js - Message: invalid token"}
+{"level":"error","message":"Date: 8/6/2023 - File: token.js - Message: jwt expired"}
+{"level":"error","message":"Date: 8/6/2023 - File: token.js - Message: jwt expired"}
+{"level":"error","message":"Date: 8/6/2023 - File: user.mongo.js - Message: data and salt arguments required"}
+{"level":"error","message":"Date: 8/6/2023 - File: validations.js - Message: New password can't be the same as the previous password"}
+{"level":"error","message":"8/6/2023: Incorrect credentials"}
+{"level":"error","message":"Date: 8/6/2023 - File: product.mongo.js - Message: req is not defined"}
+{"level":"error","message":"8/7/2023: Incorrect credentials"}
+{"level":"error","message":"8/7/2023: Cast to embedded failed for value \"645ae40952e2c6718d5a0311\" (type string) at path \"products\" because of \"ObjectParameterError\""}
+{"level":"error","message":"8/7/2023: Cast to embedded failed for value \"645ae40952e2c6718d5a0311\" (type string) at path \"products\" because of \"ObjectParameterError\""}
+{"level":"error","message":"8/7/2023: Cast to embedded failed for value \"645ae40952e2c6718d5a0311\" (type string) at path \"products\" because of \"ObjectParameterError\""}
+{"level":"error","message":"8/8/2023: products.forEach is not a function"}
+{"level":"error","message":"8/8/2023: products.forEach is not a function"}
+{"level":"error","message":"8/9/2023: Incorrect credentials"}
